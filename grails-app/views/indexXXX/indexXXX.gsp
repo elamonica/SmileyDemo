@@ -74,17 +74,15 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Bienvenido a Smarty</h1>
-        <p>Un sitio, todo lo que te importa</p>
+        Un sitio, todo lo que te importa
         
       </div>
     
-
-      <div class="container">
-        <g:render template="filterForm" bean="${insuranceFilter}"/>
-      </div>
-		<div>
-		<p><a class="btn btn-primary btn-lg">Consulta por tu seguro</a></p>
-		</div>
+	<div id="preferences" class="container" style="background-color: white;  border-radius: 15px; padding-bottom: 15px; padding-left: 15px; ">
+    	<g:render template="filterForm" />
+    </div>
+      
+		
     </div>
 
 
@@ -128,6 +126,22 @@
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
 
+
+
+		<script>
+	function setQuestion(data) {
+		// The response comes back as a bunch-o-JSON
+		 var $element = $('#carModel');
+  		$element.empty();
+  		
+  		$.each(data, function(index, aData) {
+    		var option = $('<option/>').val(aData.id).text(aData.name);
+    		$element.append(option)
+  		});
+  		$element.removeAttr('disabled');
+	}
+	
+	</script>
 		<script>
 	function updateModels(data) {
 		// The response comes back as a bunch-o-JSON

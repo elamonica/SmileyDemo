@@ -1,13 +1,13 @@
 <%@ page import="smileydemo.CarInssuranceFilter" %>
 
-
+<g:formRemote name="filterForm" url="[controller:'indexXXX', action:'submitCar']" update="preferences" >
 
 <div class="fieldcontain ${hasErrors(bean: carInssuranceFilterInstance, field: 'carYear', 'error')} ">
 	<label for="carYear">
 		<g:message code="carInssuranceFilter.carYear.label" default="Car Year" />
 		
 	</label>
-	<g:select class="dropdown" name="carYear" from="${carInssuranceFilterInstance.constraints.carYear.inList}" value="${carInssuranceFilterInstance?.carYear}" valueMessagePrefix="carInssuranceFilter.carYear" noSelection="['': '']"/>
+	<g:select class="dropdown" name="carYear" from="${carInssuranceFilterInstance.constraints.carYear.inList}" value="${carInssuranceFilterInstance?.carYear}" valueMessagePrefix="carInssuranceFilter.carYear" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: carInssuranceFilterInstance, field: 'carBrand', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="carInssuranceFilter.carBrand.label" default="Brand" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select class="dropdown" id="carBrand" name="carBrand.id" from="${smileydemo.CarBrand.list()}" optionKey="id" required="" value="${carInssuranceFilterInstance?.carBrand?.id}" class="many-to-one"
+	<g:select class="dropdown" id="carBrand" name="carBrand" from="${smileydemo.CarBrand.list()}" optionKey="id" required="" value="${carInssuranceFilterInstance?.carBrand?.id}" class="many-to-one"
 		onchange="${remoteFunction(
 			controller: 'carBrand',
 			action: 'ajaxGetModels',
@@ -32,4 +32,9 @@
 	</label>
 	<g:select class="dropdown" id="carModel" name="carModel" from="[]" optionKey="id" required="" value="${carInssuranceFilterInstance?.carModel?.id}" />
 </div>
+
+<div>
+       		<g:submitButton name="Consulta por tu seguro" class="btn btn-primary btn-lg"/>
+	   </div>
+	</g:formRemote>
 
